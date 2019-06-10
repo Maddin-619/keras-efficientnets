@@ -1,8 +1,8 @@
 import numpy as np
 import tensorflow as tf
-from keras import backend as K
-from keras import initializers
-from keras import layers
+from tensorflow.keras import backend as K
+from tensorflow.keras import initializers
+from tensorflow.keras import layers
 from keras.utils.generic_utils import get_custom_objects
 
 
@@ -26,7 +26,7 @@ class EfficientNetConvInitializer(initializers.Initializer):
     def __init__(self):
         super(EfficientNetConvInitializer, self).__init__()
 
-    def __call__(self, shape, dtype=None):
+    def __call__(self, shape, dtype=None, partition_info=None):
         dtype = dtype or K.floatx()
 
         kernel_height, kernel_width, _, out_filters = shape
@@ -54,7 +54,7 @@ class EfficientNetDenseInitializer(initializers.Initializer):
     def __init__(self):
         super(EfficientNetDenseInitializer, self).__init__()
 
-    def __call__(self, shape, dtype=None):
+    def __call__(self, shape, dtype=None, partition_info=None):
         dtype = dtype or K.floatx()
 
         init_range = 1.0 / np.sqrt(shape[1])
